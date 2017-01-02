@@ -1,2 +1,3 @@
 scraper/london-sky
-scraper/ghostdriver.log
+**/ghostdriver.log
+**.pyc
