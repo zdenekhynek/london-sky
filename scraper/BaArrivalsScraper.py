@@ -34,11 +34,16 @@ class BaArrivalsScraper():
 				arrival['status'] = cols[3].getText()
 				arrivals.append(arrival)
 
-		print arrivals
+		return arrivals
 
 	def scrape(self):
-		self.scrape_arrivals()
+		arrivals = self.scrape_arrivals()
 
+		# try to quit everything
+		self.driver.close()
+		self.driver.quit()
+
+		return arrivals
 
 if __name__ == '__main__':
 	scraper = BaArrivalsScraper()
