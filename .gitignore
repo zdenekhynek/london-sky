@@ -1,3 +1,4 @@
-scraper/london-sky
+london-sky
 **/ghostdriver.log
 **.pyc
+.env
