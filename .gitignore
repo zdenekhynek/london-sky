@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 london-sky
 **/ghostdriver.log
 **.pyc
 .env
+/node_modules
