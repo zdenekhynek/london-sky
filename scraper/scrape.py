@@ -6,6 +6,10 @@ import googlemaps
 
 from BaArrivalsScraper import BaArrivalsScraper
 
+client = MongoClient()
+db = client['london-sky']
+arrivalsCollection = db.arrivals
+
 
 def geocode_address(address):
 	api_key = os.environ['GOOGLE_MAP_API_KEY']
@@ -53,13 +57,18 @@ def create_arrivals_date(arrivals):
 	return map(add_arrival_date, arrivals)
 
 
-def insert_arrivals(arrivals):
-	client = MongoClient()
-	db = client['london-sky']
-	arrivalsCollection = db.arrivals
+def insert_arrival(arrival):
+	# using update to avoid duplication
+	query = {'flightNo': arrival['flightNo']}
+	arrivalsCollection.update(
+		query,
+		arrival,
+		True
+	)
 
-	# insert arrivals into the mongo connection
-	arrivalsCollection.insert_many(arrivals)
+
+def insert_arrivals(arrivals):
+	map(insert_arrival, arrivals)
 
 
 if __name__ == '__main__':
