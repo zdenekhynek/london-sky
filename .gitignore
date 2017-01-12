@@ -1,1 +1,4 @@
 /node_modules
+scraper/london-sky
+**/ghostdriver.log
+**.pyc
